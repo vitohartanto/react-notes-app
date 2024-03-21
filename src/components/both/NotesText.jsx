@@ -1,4 +1,4 @@
-import { showFormattedDate } from "../utils";
+import { showFormattedDate } from "../../utils";
 
 const ActiveNotesText = ({ id, title, body, createdAt, archived }) => {
   return (

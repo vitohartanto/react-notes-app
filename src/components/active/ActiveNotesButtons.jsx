@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBoxArchive, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const ArchivedNotesButtons = () => {
+const ActiveNotesButtons = ({ noteId, onDeleteNote }) => {
+  const handleDeleteNote = () => {
+    onDeleteNote(noteId); // Pass noteId to onDeleteNote
+  };
+
   return (
     <div className="absolute top-6 right-4">
-      <button className="mr-3">
+      <button className="mr-3" onClick={handleDeleteNote}>
         <FontAwesomeIcon
           className="text-2xl"
           icon={faTrash}
@@ -14,7 +18,7 @@ const ArchivedNotesButtons = () => {
       <button>
         <FontAwesomeIcon
           className="text-2xl"
-          icon={faArrowsRotate}
+          icon={faBoxArchive}
           style={{ color: "#f04a00" }}
         />
       </button>
@@ -22,4 +26,4 @@ const ArchivedNotesButtons = () => {
   );
 };
 
-export default ArchivedNotesButtons;
+export default ActiveNotesButtons;
