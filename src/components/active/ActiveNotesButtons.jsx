@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxArchive, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const ActiveNotesButtons = ({ noteId, onDeleteNote }) => {
+const ActiveNotesButtons = ({ noteId, onDeleteNote, onArchiveNote }) => {
   const handleDeleteNote = () => {
-    onDeleteNote(noteId); // Pass noteId to onDeleteNote
+    onDeleteNote(noteId);
+  };
+
+  const handleArchiveNote = () => {
+    onArchiveNote(noteId);
   };
 
   return (
@@ -15,7 +19,7 @@ const ActiveNotesButtons = ({ noteId, onDeleteNote }) => {
           style={{ color: "#f04a00" }}
         />
       </button>
-      <button>
+      <button onClick={handleArchiveNote}>
         <FontAwesomeIcon
           className="text-2xl"
           icon={faBoxArchive}

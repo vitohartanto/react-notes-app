@@ -1,7 +1,7 @@
 import NotesText from "../both/NotesText";
 import ArchivedNotesButtons from "./ArchivedNotesButton";
 
-const ArchivedNotes = ({ archivedNotes, onDeleteNote }) => {
+const ArchivedNotes = ({ archivedNotes, onDeleteNote, onUnarchiveNote }) => {
   return (
     <div className="flex flex-col items-center ">
       {archivedNotes.length > 0 ? (
@@ -19,6 +19,7 @@ const ArchivedNotes = ({ archivedNotes, onDeleteNote }) => {
               <ArchivedNotesButtons
                 noteId={note.id}
                 onDeleteNote={onDeleteNote}
+                onUnarchiveNote={onUnarchiveNote}
               />
             </div>
           );

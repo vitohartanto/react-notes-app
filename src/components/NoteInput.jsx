@@ -2,11 +2,18 @@ import React, { useState } from "react";
 
 const NoteInput = ({ setNotes }) => {
   const [newNote, setNewNote] = useState({ title: "", body: "" });
+  const [remainingChars, setRemainingChars] = useState(50); // Initial character limit
 
   const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "title") {
+      const inputLength = value.length;
+      const remaining = 50 - inputLength;
+      setRemainingChars(remaining);
+    }
     setNewNote((prevNote) => ({
       ...prevNote,
-      [event.target.name]: event.target.value,
+      [name]: value,
     }));
   };
 
@@ -26,8 +33,7 @@ const NoteInput = ({ setNotes }) => {
 
       // Reset input fields after adding a note
       setNewNote({ title: "", body: "" });
-    } else {
-      alert("Please fill in both title and body before adding a note.");
+      setRemainingChars(50); // Reset character limit
     }
   };
 
@@ -39,7 +45,7 @@ const NoteInput = ({ setNotes }) => {
 
       <form action="" className="flex flex-col" onSubmit={handleAddNote}>
         <p className="text-right mr-10 mt-5 text-[#F04A00]">
-          Characters left: 50
+          Characters left: {remainingChars}
         </p>
         <input
           type="text"
@@ -48,6 +54,9 @@ const NoteInput = ({ setNotes }) => {
           placeholder="Title for your note"
           value={newNote.title}
           onChange={handleInputChange}
+          // I use maxLength here just to prevent any bug
+          maxLength={50}
+          required
         />
         <textarea
           name="body"
@@ -57,6 +66,7 @@ const NoteInput = ({ setNotes }) => {
           placeholder="Write your notes here"
           value={newNote.body}
           onChange={handleInputChange}
+          required
         ></textarea>
         <button className="bg-[#F04A00] rounded-2xl mx-10 px-4 py-3 text-white text-xl font-semibold hover:bg-white hover:text-[#F04A00] hover:border-[#F04A00] hover:border-2">
           + Add

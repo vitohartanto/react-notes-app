@@ -21,13 +21,31 @@ const BigNotes = ({ searchQuery }) => {
     setNotes(updatedNotes);
   };
 
+  const handleArchiveNote = (id) => {
+    const updatedNotes = notes.map((note) =>
+      note.id === id ? { ...note, archived: true } : note
+    );
+    setNotes(updatedNotes);
+  };
+
+  const handleUnarchiveNote = (id) => {
+    const updatedNotes = notes.map((note) =>
+      note.id === id ? { ...note, archived: false } : note
+    );
+    setNotes(updatedNotes);
+  };
+
   return (
     <div className="mb-12">
       <NoteInput setNotes={setNotes} />
       <h1 className="text-[#F04A00] font-bold text-2xl text-center mt-10 mb-5">
         Active Notes
       </h1>
-      <ActiveNotes activeNotes={activeNotes} onDeleteNote={handleDeleteNote} />
+      <ActiveNotes
+        activeNotes={activeNotes}
+        onDeleteNote={handleDeleteNote}
+        onArchiveNote={handleArchiveNote}
+      />
 
       <h1 className="text-[#F04A00] font-bold text-2xl text-center mt-10 mb-5">
         Archived Notes
@@ -35,6 +53,7 @@ const BigNotes = ({ searchQuery }) => {
       <ArchivedNotes
         archivedNotes={archivedNotes}
         onDeleteNote={handleDeleteNote}
+        onUnarchiveNote={handleUnarchiveNote}
       />
     </div>
   );
