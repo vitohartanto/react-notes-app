@@ -36,9 +36,9 @@ const BigNotes = ({ searchQuery }) => {
   };
 
   return (
-    <div className="mb-12">
+    <div className="mt-32 mb-12">
       <NoteInput setNotes={setNotes} />
-      <h1 className="text-[#F04A00] font-bold text-2xl text-center mt-10 mb-5">
+      <h1 className="text-[#F04A00] font-bold text-3xl text-center mt-10 mb-5">
         Active Notes
       </h1>
       <ActiveNotes
@@ -47,7 +47,7 @@ const BigNotes = ({ searchQuery }) => {
         onArchiveNote={handleArchiveNote}
       />
 
-      <h1 className="text-[#F04A00] font-bold text-2xl text-center mt-10 mb-5">
+      <h1 className="text-[#F04A00] font-bold text-3xl text-center mt-10 mb-5">
         Archived Notes
       </h1>
       <ArchivedNotes
